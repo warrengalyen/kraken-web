@@ -6,6 +6,7 @@ html, body, #app {
 	padding: 0;
 	margin: 0;
 	font-family: 'Hind', sans-serif;
+	font-weight: 300;
 }
 
 .paneHeader {
@@ -15,8 +16,8 @@ html, body, #app {
 	z-index: 1;
 	border-bottom: 1px solid #EEE;
 	box-sizing: border-box;
-    padding: 20px;
-    white-space: nowrap;
+	padding: 20px;
+	white-space: nowrap;
 	overflow: hidden;
 }
 
@@ -24,11 +25,11 @@ html, body, #app {
 	width: 100%;
 	position: relative;
 	height: calc(100% - 90px);
-    top: 90px;
-    overflow-x: hidden;
+	top: 90px;
+	overflow-x: hidden;
 	overflow-y: auto;
 	box-sizing: border-box;
-	padding: 20px;
+	padding: 40px;
 }
 
 li {
@@ -38,4 +39,5 @@ li {
 
 h2 {
 	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
 }
