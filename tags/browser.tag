@@ -1,8 +1,9 @@
 <browser>
-	<span>Hello World!</span>
+	<h2>File Browser</h2>
+
 	<ul>
-		<li each={ browseResults }>
-			<a onclick={ browseTo }>{ fields.display_name }</a>
+		<li each={ browseResults } onclick={ onClickItem }>
+			{ fields.display_name }
 		</li>
 	</ul>
 
@@ -21,19 +22,24 @@
 				for (var i = 0; i < length; i++) {
 					data[i].fields = data[i].fields[0];
 				}
-
+				
 				this.reset();
 				this.browseResults = data;
 				this.update();
 			}.bind(this));
 		}
 
-		browseTo(e) {
-			this.browse(e.item.fields.path);
+		onClickItem(e) {
+			var variant = e.item.variant;
+			if (variant == "Directory") {
+				this.browse(e.item.fields.path);
+			} else if (variant == "Song") {
+				eventBus.trigger("playlist:queue", e.item);
+			}
 		}
 
 		this.reset();
 		this.browse("");
 	</script>
 
-</browser> 
+</browser>
