@@ -6,22 +6,32 @@
 	</head>
 	<body>
 
-        <browser></browser>
-        <playlist></playlist>
-        <player></player>
+        <div id="app"></div>
 
-		<!--<script src="https://cdn.rawgit.com/github/fetch/master/fetch.js"></script>-->
+        <!--<script src="https://cdn.rawgit.com/github/fetch/master/fetch.js"></script>-->
+        <script src="lib/js.cookie.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.5.0/riot+compiler.js"></script>
+        <script type="riot/tag" src="tags/auth.tag"></script>
         <script type="riot/tag" src="tags/breadcrumbs.tag"></script>
         <script type="riot/tag" src="tags/browser.tag"></script>
+        <script type="riot/tag" src="tags/main.tag"></script>
         <script type="riot/tag" src="tags/player.tag"></script>
         <script type="riot/tag" src="tags/playlist.tag"></script>
 
         <script type="text/javascript">
             var eventBus = riot.observable();
-	        riot.mount('browser');
-            riot.mount('player');
-            riot.mount('playlist');
+            riot.route("/auth", function() {
+				riot.mount("#app", "auth");
+			});
+
+			riot.route("/", function() {
+				riot.mount("#app", "main");
+			});
+
+			if (Cookies.get("username") == undefined) {
+				riot.route("/auth");
+			}
+			riot.route.start(true);
         </script>
         
 	</body>
